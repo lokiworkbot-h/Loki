@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>Loki | ورود / ثبت‌نام</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+
+<div class="auth-container">
+
+  <h1>Loki</h1>
+
+  <!-- REGISTER -->
+  <div id="registerBox">
+    <h2>ثبت‌نام</h2>
+    <input id="regPhone" type="tel" placeholder="شماره تلفن">
+    <input id="regEmail" type="email" placeholder="ایمیل">
+    <input id="regPassword" type="password" placeholder="رمز عبور">
+    <button id="registerBtn">ثبت‌نام</button>
+    <p class="switch">قبلا ثبت‌نام کردید؟ <span onclick="showLogin()">ورود</span></p>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginBox" style="display:none;">
+    <h2>ورود</h2>
+    <input id="loginEmail" type="email" placeholder="ایمیل">
+    <input id="loginPassword" type="password" placeholder="رمز عبور">
+    <button id="loginBtn">ورود</button>
+    <p class="error-msg" id="loginError">ایمیل یا رمز اشتباه است</p>
+    <p class="switch">حساب ندارید؟ <span onclick="showRegister()">ثبت‌نام</span></p>
+  </div>
+
+</div>
+
+<!-- Firebase Config -->
+<script src="assets/js/firebase.js"></script>
+<!-- Auth JS -->
+<script src="assets/js/auth.js"></script>
+
+</body>
+</html>
