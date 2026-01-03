@@ -1,0 +1,41 @@
+body {
+  font-family:sans-serif;
+  background:#f0f2f5;
+  margin:0;
+  padding:0;
+}
+
+.admin-container {
+  width:90%;
+  max-width:800px;
+  margin:40px auto;
+  background:#fff;
+  padding:24px;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+}
+
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+button {
+  padding:8px 16px;
+  border:none;
+  border-radius:8px;
+  background:#00c98b;
+  color:#fff;
+  cursor:pointer;
+}
+
+button:active { transform:scale(0.97); }
+
+#usersContainer { margin-top:16px; }
+.userCard {
+  padding:12px;
+  border-bottom:1px solid #ccc;
+  display:flex;
+  justify-content:space-between;
+}
