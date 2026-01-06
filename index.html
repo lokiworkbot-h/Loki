@@ -68,3 +68,26 @@ document.getElementById("loginBtn").onclick = async () => {
   }
 };
 </script>
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCbpBnVkVVF1EPmhpqdA_JOZ3S73hqLbik",
+  authDomain: "loki-5045.firebaseapp.com",
+  projectId: "loki-5045",
+  storageBucket: "loki-5045.firebasestorage.app",
+  messagingSenderId: "266342681032",
+  appId: "1:266342681032:web:61e0c162c9a1f2943018fd",
+  measurementId: "G-R1XPXVP15C"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
