@@ -5,16 +5,66 @@
 <button type="button" id="signupBtn">ثبت نام</button>
 <button type="button" id="alreadyBtn">قبلاً ثبت‌نام کرده‌ام</button>
 
-<script>
-document.getElementById("loginBtn").onclick = function () {
-  alert("دکمه ورود کار می‌کند");
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "API_KEY",
+  authDomain: "PROJECT_ID.firebaseapp.com",
+  projectId: "PROJECT_ID",
+  storageBucket: "PROJECT_ID.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
 };
 
-document.getElementById("signupBtn").onclick = function () {
-  alert("دکمه ثبت نام کار می‌کند");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ثبت نام
+document.getElementById("signupBtn").onclick = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("ایمیل و رمز عبور را وارد کنید");
+    return;
+  }
+
+  try {
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+    await setDoc(doc(db, "users", userCred.user.uid), {
+      email: email,
+      createdAt: Date.now()
+    });
+
+    alert("ثبت نام با موفقیت انجام شد");
+  } catch (e) {
+    alert(e.message);
+  }
 };
 
-document.getElementById("alreadyBtn").onclick = function () {
-  alert("دکمه قبلاً ثبت نام کرده‌ام");
+// ورود
+document.getElementById("loginBtn").onclick = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("ورود موفق");
+  } catch (e) {
+    alert(e.message);
+  }
 };
 </script>
