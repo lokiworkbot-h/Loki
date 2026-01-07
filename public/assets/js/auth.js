@@ -101,3 +101,44 @@ document.getElementById("logoutBtn").onclick = async () => {
   await signOut(auth);
   alert("شما خارج شدید");
 };
+import { auth } from "./firebase.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+onAuthStateChanged(auth, (user) => {
+  const dashboard = document.getElementById("dashboard");
+  const authElements = [
+    "email",
+    "password",
+    "loginBtn",
+    "signupBtn",
+    "alreadyBtn"
+  ];
+
+  if (user) {
+    // کاربر لاگین شده
+    dashboard.style.display = "block";
+    document.getElementById("userEmail").textContent = user.email;
+
+    authElements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    });
+  } else {
+    // کاربر لاگین نیست
+    dashboard.style.display = "none";
+
+    authElements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "inline-block";
+    });
+  }
+});
+
+// خروج
+document.getElementById("logoutBtn").onclick = async () => {
+  await signOut(auth);
+  alert("خارج شدید");
+};
