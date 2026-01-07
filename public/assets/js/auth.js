@@ -75,3 +75,29 @@ loginBtn.addEventListener("click", async ()=>{
     setTimeout(()=>loginBtn.classList.remove("shake"),300);
   }
 });
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// بررسی وضعیت کاربر
+onAuthStateChanged(auth, (user) => {
+  const dashboard = document.getElementById("dashboard");
+  const formInputs = [ "email", "password", "loginBtn", "signupBtn", "alreadyBtn" ];
+
+  if (user) {
+    // کاربر لاگین هست
+    dashboard.style.display = "block";
+    document.getElementById("userEmail").textContent = user.email;
+
+    // مخفی کردن فرم‌ها
+    formInputs.forEach(id => document.getElementById(id).style.display = "none");
+  } else {
+    // کاربر لاگین نیست
+    dashboard.style.display = "none";
+    formInputs.forEach(id => document.getElementById(id).style.display = "inline-block");
+  }
+});
+
+// خروج
+document.getElementById("logoutBtn").onclick = async () => {
+  await signOut(auth);
+  alert("شما خارج شدید");
+};
