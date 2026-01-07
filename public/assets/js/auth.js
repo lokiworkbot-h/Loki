@@ -1,3 +1,5 @@
+console.log("AUTH FILE LOADED");
+
 import { auth } from "./firebase.js";
 import {
   onAuthStateChanged,
