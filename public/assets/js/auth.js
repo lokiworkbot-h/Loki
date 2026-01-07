@@ -1,5 +1,3 @@
-console.log("AUTH FILE LOADED");
-
 import { auth } from "./firebase.js";
 import {
   onAuthStateChanged,
@@ -46,4 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("خارج شدید");
   };
 
+});
+onAuthStateChanged(auth, (user) => {
+  console.log("USER STATE:", user);
 });
